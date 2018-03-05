@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Address</th>
+      <th scope="col">Rating</th>
+    </tr>
+  </thead>
+  <tbody>
+{% for place in response.results %}
+  
+    <tr>
+      <th scope="row">{{forloop.counter}}</th>
+      <td>{{place.name}}</td>
+      <td>{{place.formatted_address}}</td>
+      <td>{{place.rating}}</td>
+    </tr>
+
+{% endfor %}
+  </tbody>
+</table>
+
+
+{% endblock content %}
+
+
+
+
+<ul>
+<li>{{place.formatted_address}}</li>
+<li>{{place.name}}</li>
+<li>{{place.rating}}</li>
+</ul>
