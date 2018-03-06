@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Address</th>
+      <th scope="col">Rating</th>
+      <th scope="col">Lat</th>
+      <th scope="col">Lng</th>
+    </tr>
+  </thead>
+  <tbody>
+  
+    <tr>
+      <th scope="row"></th>
+      <td>{{response.result.name}}</td>
+      <td>{{response.result.formatted_address}}</td>
+      <td>{{response.result.rating}}</td>
+      <td>Latitude: {{response.result.geometry.location.lat}}</td>
+      <td>Longitude: {{response.result.geometry.location.lng}}</td>
+      
+    </tr>
+
+
+  </tbody>
+</table>
+
+<iframe
+  width="600"
+  height="450"
+  frameborder="0" style="border:0"
+  src="https://www.google.com/maps/embed/v1/place?key={{map}}
+    &q={{response.result.geometry.location.lat}}, {{response.result.geometry.location.lng}}" allowfullscreen>
+  }
+  }
+</iframe>
+
+{% endblock content %}

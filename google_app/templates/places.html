@@ -2,6 +2,15 @@
 
 {% block content %}
 
+<nav class="navbar navbar-light bg-light">
+  <form class="form-inline" action="{% url 'place_search' %}" method="GET">
+    <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" name="query">
+    <div class="input-group-append">
+	    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+	</div>
+  </form>
+</nav>
+
 
 <table class="table">
   <thead class="thead-dark">
@@ -20,20 +29,25 @@
       <td>{{place.name}}</td>
       <td>{{place.formatted_address}}</td>
       <td>{{place.rating}}</td>
+      <td>
+      	<form action="{% url 'place_detail' %}" method="GET">
+      		<input type="hidden" value="{{place.place_id}}" name="id">
+      		<input type="submit" value="Detail Page" class="btn btn-outline-info">
+      	</form>
+      </td>
     </tr>
 
 {% endfor %}
   </tbody>
 </table>
 
-
+{% if response.next_page_token %}
+<form action="{% url 'place_search' %}" method="GET">
+	<input type="hidden" value="{{response.next_page_token}}" name="pt">
+	<input type="submit" class="btn btn-outline-primary" value="more results...">
+</form>
+{% endif %}
 {% endblock content %}
 
 
 
-
-<ul>
-<li>{{place.formatted_address}}</li>
-<li>{{place.name}}</li>
-<li>{{place.rating}}</li>
-</ul>
