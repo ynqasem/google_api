@@ -16,13 +16,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from google_app import views
-from tweety import views
+from tweety import views as tweet_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
     path('place_search/', views.place_search, name='place_search'),
     path('place_detail/', views.place_detail, name='place_detail'),
-    path('tweet_search/', views.tweet_search, name='tweet_search'),
+    path('tweet_search/', tweet_views.tweet_search, name='tweet_search'),
+    path('tweet_post/', tweet_views.tweet_post, name='tweet_post'),
 
 ]
